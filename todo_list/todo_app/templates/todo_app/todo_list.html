@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>할 일 목록</title> <!-- 웹 페이지의 제목을 '할 일 목록'으로 설정 -->
+</head>
+<body>
+<h1>할 일 목록</h1> <!-- 페이지의 주요 제목으로 '할 일 목록'을 표시 -->
+
+<!-- todo_list 변수에 할 일이 있으면 목록을 표시하고, 없으면 '할 일이 없습니다.' 메시지를 출력 -->
+{% if todo_list %}
+<table border=1>
+    <!-- 테이블 헤더 -->
+    <thead>
+      <tr>
+        <th>상태</th>
+        <th>내용</th>
+        <th>우선순위</th>
+        <th>마감일</th>
+        <th>작업</th>
+      </tr>
+    </thead>
+    <!-- 테이블 본문 -->
+    <tbody>
+      {% for todo in todo_list %}
+      <tr>
+        <td>{{ todo.status }}</td>
+        <td>{{ todo.content }}</td>
+        <td>{{ todo.priority }}</td>
+        <td>{{ todo.due_date|date:"Y-m-d" }}</td>
+        <td>
+          <!-- 수정 및 삭제 링크 -->
+          <a href="{% url 'todo_edit' todo.id %}">수정</a> |
+          <a href="{% url 'todo_delete' todo.id %}">삭제</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>  
+  <br>
+{% else %}
+<p>할 일이 없습니다.</p> <!-- 할 일이 없을 때 표시되는 메시지 -->
+{% endif %}
+
+<a href="{% url 'todo_add' %}">할 일 추가</a> <!-- 할 일 추가 페이지로 이동하는 링크 -->
+</body>
+</html>
