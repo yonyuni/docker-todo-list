@@ -15,3 +15,5 @@ RUN pip install -r requirements.txt
 
 # 소스 코드 복사
 COPY . /todo_list/
+
+EXPOSE 8000

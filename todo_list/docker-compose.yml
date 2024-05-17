@@ -23,12 +23,13 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: abcd1234
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: todolist_db
       MYSQL_USER: user
       MYSQL_PASSWORD: abcd1234
     ports:
-      - "3306:3306"
+      - "3307:3306"
+    restart: always
 
 volumes:
   db-data:
